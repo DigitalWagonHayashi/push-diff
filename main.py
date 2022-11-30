@@ -1,11 +1,10 @@
 import cv2
+import os
 import numpy as np
 from numpy import uint8
 
 
-def push_diff():
-    img1_path = '/Users/haruki/img1.png'
-    img2_path = '/Users/haruki/img1.png'
+def push_diff(img1_path: str, img2_path: str):
     img1 = cv2.imread(img1_path, -1)
     img2 = cv2.imread(img2_path, -1)
     print(type(img2))
@@ -23,7 +22,7 @@ def push_diff():
                 diff_coordinate_tmp.append(img2[height][width])
         diff_coordinate.append(diff_coordinate_tmp)
     print(diff_coordinate[0])
-    cv2.imwrite('/Users/haruki/imgimg.png', np.array(diff_coordinate))
+    cv2.imwrite(f'{img2_path}_diff_on_{os.path.basename(img1_path)}.png', np.array(diff_coordinate))
 
 
 if __name__ == '__main__':
